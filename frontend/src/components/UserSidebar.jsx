@@ -4,7 +4,11 @@ import {
   FaUser,
   FaCreditCard,
   FaLock,
-  FaUserCircle
+  FaUserCircle,
+  FaHistory,
+  FaArrowUp,
+  FaBell,
+  FaUserCog
 } from "react-icons/fa";
 
 function UserSidebar() {
@@ -39,6 +43,18 @@ function UserSidebar() {
           Dashboard
         </Link>
 
+          <Link
+  to="/profile"
+  className={
+    location.pathname === "/profile"
+      ? "active"
+      : ""
+  }
+>
+  <FaUserCog />
+  Profile
+</Link>
+
         <Link
           to="/my-subscription"
           className={
@@ -61,6 +77,42 @@ function UserSidebar() {
         >
           <FaLock />
           Premium Content
+        </Link>
+
+        <Link
+          to="/payment-history"
+          className={
+            location.pathname === "/payment-history"
+              ? "active"
+              : ""
+          }
+        >
+          <FaHistory />
+          Payment History
+        </Link>
+
+        <Link
+          to="/upgrade-plan"
+          className={
+            location.pathname === "/upgrade-plan"
+              ? "active"
+              : ""
+          }
+        >
+          <FaArrowUp />
+          Upgrade Plan
+        </Link>
+
+        <Link
+          to="/notifications"
+          className={
+            location.pathname === "/notifications"
+              ? "active"
+              : ""
+          }
+        >
+          <FaBell />
+          Notifications
         </Link>
 
       </nav>

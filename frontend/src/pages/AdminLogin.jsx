@@ -25,6 +25,8 @@ function AdminLogin() {
       password === "admin@123"
     ) {
 
+      localStorage.clear();
+
       localStorage.setItem(
         "isLoggedIn",
         "true"
@@ -39,7 +41,9 @@ function AdminLogin() {
         "Admin Login Successful"
       );
 
-      navigate("/admin-dashboard");
+      navigate(
+        "/admin-dashboard"
+      );
 
     } else {
 

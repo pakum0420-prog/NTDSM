@@ -35,6 +35,11 @@ function UserLogin() {
         "user"
       );
 
+      localStorage.setItem(
+        "userPlan",
+        "Premium"
+      );
+
       toast.success(
         "User Login Successful"
       );

@@ -19,9 +19,12 @@ import AuditLogs from "./pages/AuditLogs";
 import AdminLogin from "./pages/AdminLogin";
 import UserLogin from "./pages/UserLogin";
 import PortalSelect from "./pages/PortalSelect";
-
+import Profile from "./pages/Profile";
 import AdminSidebar from "./components/AdminSidebar";
 import UserSidebar from "./components/UserSidebar";
+import PaymentHistory from "./pages/PaymentHistory";
+import UpgradePlan from "./pages/UpgradePlan";
+import Notifications from "./pages/Notifications";
 
 const AdminRoute = ({ children }) => {
 
@@ -172,7 +175,15 @@ function Layout() {
               </UserRoute>
             }
           />
-
+           
+           <Route
+  path="/profile"
+  element={
+    <UserRoute>
+      <Profile />
+    </UserRoute>
+  }
+/>
           <Route
             path="/my-subscription"
             element={
@@ -190,6 +201,33 @@ function Layout() {
               </UserRoute>
             }
           />
+
+            <Route
+  path="/payment-history"
+  element={
+    <UserRoute>
+      <PaymentHistory />
+    </UserRoute>
+  }
+/>
+
+<Route
+  path="/upgrade-plan"
+  element={
+    <UserRoute>
+      <UpgradePlan />
+    </UserRoute>
+  }
+/>
+
+<Route
+  path="/notifications"
+  element={
+    <UserRoute>
+      <Notifications />
+    </UserRoute>
+  }
+/>
          <Route
   path="/audit-logs"
   element={<AuditLogs />}
