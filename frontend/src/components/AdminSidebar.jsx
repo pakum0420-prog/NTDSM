@@ -113,7 +113,17 @@ function Sidebar() {
 
         
 
-        
+        <Link
+  to="/audit-logs"
+  className={
+    location.pathname ===
+    "/audit-logs"
+      ? "active"
+      : ""
+  }
+>
+  Audit Logs
+</Link>
        
         
 

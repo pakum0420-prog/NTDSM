@@ -100,3 +100,22 @@
   border-bottom: none;
 
 }
+@media (max-width: 768px) {
+
+  .row {
+    margin: 0;
+  }
+
+  .card {
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+
+}

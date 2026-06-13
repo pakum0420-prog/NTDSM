@@ -76,12 +76,14 @@ def register_routes(app):
     @app.route("/api/subscriptions/<int:id>", methods=["PUT"])
     def update_subscription(id):
         subscription = db.session.get(Subscription, id)
+
         if not subscription:
-            return jsonify({"message": "Subscription Not Found"}), 404
+            return jsonify({
+                "message": "Subscription Not Found"
+            }), 404
 
         data = request.get_json(silent=True) or {}
-        
-        # Update fields only if they are provided in the request
+
         for key, value in data.items():
             if hasattr(subscription, key):
                 setattr(subscription, key, value)
@@ -92,12 +94,19 @@ def register_routes(app):
                 subscriber_name=subscription.subscriber_name,
                 created_at=datetime.now()
             )
+
             db.session.add(log)
             db.session.commit()
-            return jsonify({"message": "Subscription Updated Successfully"})
+
+            return jsonify({
+                "message": "Subscription Updated Successfully"
+            })
+
         except Exception as e:
             db.session.rollback()
-            return jsonify({"error": str(e)}), 500
+            return jsonify({
+                "error": str(e)
+            }), 500
 
     # ==========================
     # DELETE SUBSCRIPTION

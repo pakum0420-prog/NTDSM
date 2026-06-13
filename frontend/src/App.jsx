@@ -15,7 +15,7 @@ import SubscriptionDetails from "./pages/SubscriptionDetails";
 import UserDashboard from "./pages/UserDashboard";
 import MySubscription from "./pages/MySubscription";
 import PremiumContent from "./pages/PremiumContent";
-
+import AuditLogs from "./pages/AuditLogs";
 import AdminLogin from "./pages/AdminLogin";
 import UserLogin from "./pages/UserLogin";
 import PortalSelect from "./pages/PortalSelect";
@@ -190,6 +190,10 @@ function Layout() {
               </UserRoute>
             }
           />
+         <Route
+  path="/audit-logs"
+  element={<AuditLogs />}
+/>
 
         </Routes>
 
