@@ -1,0 +1,33 @@
+.subscription-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subscription-table th {
+  background: #0d6efd;
+  color: white;
+}
+
+.subscription-table th,
+.subscription-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+
+@media (max-width: 768px) {
+
+  .subscription-table {
+
+    font-size: 12px;
+
+  }
+
+  .subscription-table th,
+  .subscription-table td {
+
+    padding: 8px;
+
+  }
+
+}

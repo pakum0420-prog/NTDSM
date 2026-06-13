@@ -1,0 +1,166 @@
+.dashboard-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 20px;
+
+  margin-bottom: 30px;
+
+}
+
+.modern-card {
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.08);
+
+  transition: all 0.3s ease;
+
+}
+
+.modern-card:hover {
+
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.12);
+
+}
+
+.modern-card h6 {
+
+  margin: 0;
+
+  color: #6c757d;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+}
+
+.modern-card h2 {
+
+  margin-top: 6px;
+
+  margin-bottom: 0;
+
+  font-weight: 700;
+
+  color: #212529;
+
+}
+
+.card-icon {
+
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 15px;
+
+  background: #e7f1ff;
+
+  color: #0d6efd;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 24px;
+
+}
+
+.card-icon.success {
+
+  background: #d1e7dd;
+
+  color: #198754;
+
+}
+
+.card-icon.danger {
+
+  background: #f8d7da;
+
+  color: #dc3545;
+
+}
+
+.card-icon.warning {
+
+  background: #fff3cd;
+
+  color: #ffc107;
+
+}
+
+.card-icon.revenue {
+
+  background: #ede7f6;
+
+  color: #6f42c1;
+
+}
+
+.card-icon.pending {
+
+  background: #ffe5d0;
+
+  color: #fd7e14;
+
+}
+
+
+.access-item {
+
+  margin-bottom: 25px;
+
+}
+
+.access-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  font-weight: 500;
+
+}
+
+.progress {
+
+  height: 12px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  background: #e9ecef;
+
+}
+
+.progress-bar {
+
+  transition: all 0.5s ease;
+
+}
