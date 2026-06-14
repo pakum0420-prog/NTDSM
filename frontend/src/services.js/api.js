@@ -1,4 +1,4 @@
-const API_URL = "http://https://ntdsm.onrender.com";
+const API_URL = "https://ntdsm.onrender.com";
 
 export const getSubscriptions = async () => {
   const response = await fetch(
@@ -9,7 +9,6 @@ export const getSubscriptions = async () => {
 };
 
 export const createSubscription = async (data) => {
-
   await fetch(
     `${API_URL}/api/subscriptions`,
     {
@@ -23,7 +22,6 @@ export const createSubscription = async (data) => {
 };
 
 export const getDashboardStats = async () => {
-
   const response = await fetch(
     `${API_URL}/api/dashboard`
   );
