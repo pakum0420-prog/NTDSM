@@ -82,7 +82,7 @@ const [sortOrder, setSortOrder] =
   setLoading(true);
 
   const response = await fetch(
-    "http://https://ntdsm.onrender.com/api/dashboard"
+    "https://ntdsm.onrender.com/api/dashboard"
   );
 
   const data =
