@@ -2,5 +2,5 @@ Flask
 Flask-Cors
 Flask-SQLAlchemy
 PyMySQL
-gunicorn
 cryptography
+gunicorn
