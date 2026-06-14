@@ -14,7 +14,7 @@ function AuditLogs() {
 
     const response =
       await fetch(
-        "http://https://ntdsm.onrender.com/api/audit-logs"
+        "https://ntdsm.onrender.com/api/audit-logs"
       );
 
     const data =

@@ -71,7 +71,7 @@ const [formData, setFormData] =
 const loadSubscriptions = async () => {
 
   const response = await fetch(
-    "http://https://ntdsm.onrender.com/api/subscriptions"
+    "https://ntdsm.onrender.com/api/subscriptions"
   );
 
   const data =
@@ -235,7 +235,7 @@ if (!formData.status) {
   if (editMode) {
 
     await fetch(
-      `http://https://ntdsm.onrender.com/api/subscriptions/${editingId}`,
+      `https://ntdsm.onrender.com/api/subscriptions/${editingId}`,
       {
         method: "PUT",
         headers: {
@@ -251,7 +251,7 @@ if (!formData.status) {
   } else {
 
   await fetch(
-    "http://https://ntdsm.onrender.com/api/subscriptions",
+    "https://ntdsm.onrender.com/api/subscriptions",
     {
       method: "POST",
       headers: {
@@ -286,7 +286,7 @@ if (!formData.status) {
     if (!confirmDelete) return;
 
     await fetch(
-      `http://https://ntdsm.onrender.com/api/subscriptions/${id}`,
+      `https://ntdsm.onrender.com/api/subscriptions/${id}`,
       {
         method: "DELETE"
       }

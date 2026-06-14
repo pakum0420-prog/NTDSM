@@ -20,7 +20,7 @@ const [paymentFilter, setPaymentFilter] =
   const loadSubscriptions = async () => {
 
     const response = await fetch(
-      "http://https://ntdsm.onrender.com/api/subscriptions"
+      "https://ntdsm.onrender.com/api/subscriptions"
     );
 
     const data = await response.json();

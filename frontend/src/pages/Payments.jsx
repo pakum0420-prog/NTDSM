@@ -13,7 +13,7 @@ function Payments() {
   const loadPayments = async () => {
 
     const response = await fetch(
-      "http://https://ntdsm.onrender.com/api/payments"
+      "https://ntdsm.onrender.com/api/payments"
     );
 
     const data =
