@@ -68,7 +68,7 @@ const [sortOrder, setSortOrder] =
   const loadSubscriptions = async () => {
 
     const response = await fetch(
-      "http://127.0.0.1:5000/api/subscriptions"
+      "http://https://ntdsm.onrender.com/api/subscriptions"
     );
 
     const data = await response.json();
@@ -82,7 +82,7 @@ const [sortOrder, setSortOrder] =
   setLoading(true);
 
   const response = await fetch(
-    "http://127.0.0.1:5000/api/dashboard"
+    "http://https://ntdsm.onrender.com/api/dashboard"
   );
 
   const data =
@@ -246,7 +246,7 @@ if (!formData.status) {
   if (editMode) {
 
     await fetch(
-      `http://127.0.0.1:5000/api/subscriptions/${editingId}`,
+      `http://https://ntdsm.onrender.com/api/subscriptions/${editingId}`,
       {
         method: "PUT",
         headers: {
@@ -262,7 +262,7 @@ if (!formData.status) {
   } else {
 
   await fetch(
-    "http://127.0.0.1:5000/api/subscriptions",
+    "http://https://ntdsm.onrender.com/api/subscriptions",
     {
       method: "POST",
       headers: {
@@ -278,7 +278,7 @@ if (!formData.status) {
 
 
        await fetch(
-  "http://127.0.0.1:5000/api/subscriptions",
+  "http://https://ntdsm.onrender.com/api/subscriptions",
        );
        }
 
@@ -300,7 +300,7 @@ if (!formData.status) {
     if (!confirmDelete) return;
 
     await fetch(
-      `http://127.0.0.1:5000/api/subscriptions/${id}`,
+      `http://https://ntdsm.onrender.com/api/subscriptions/${id}`,
       {
         method: "DELETE"
       }
