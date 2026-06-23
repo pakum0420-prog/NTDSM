@@ -5,129 +5,126 @@ function SubscriptionForm({
   handleChange,
   saveSubscription
 }) {
-
   return (
-
     <form
       className="subscription-form"
       onSubmit={saveSubscription}
     >
-
       <div className="form-title">
-        Digital Subscription Entry
+        Digital Subscription & Paywall Access Entry
       </div>
 
-      <input
-        required
-        placeholder="Subscriber Name"
-        name="subscriber_name"
-        value={formData.subscriber_name}
-        onChange={handleChange}
-      />
-
-      <input
-        required
-        type="email"
-        placeholder="Email Address"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-
-      <input
-        required
-        pattern="[0-9]{10}"
-        placeholder="Phone Number"
-        name="phone"
-        value={formData.phone}
-        onChange={handleChange}
-      />
-
-      <select
-        required
-        name="plan"
-        value={formData.plan}
-        onChange={handleChange}
-      >
-        <option value="">
-          Select Plan
-        </option>
-
-        <option>Basic</option>
-        <option>Premium</option>
-        <option>Enterprise</option>
-        <option>Trial</option>
-      </select>
-
-      <select
-        required
-        name="access_level"
-        value={formData.access_level}
-        onChange={handleChange}
-      >
-        <option value="">
-          Select Access Level
-        </option>
-
-        <option>Basic</option>
-        <option>Premium</option>
-        <option>Enterprise</option>
-      </select>
-
-      <select
-        required
-        name="access_type"
-        value={formData.access_type}
-        onChange={handleChange}
-      >
-        <option value="">
-          Select Access Type
-        </option>
-
-        <option>Website</option>
-        <option>Mobile App</option>
-        <option>Premium Articles</option>
-        <option>Research Content</option>
-        <option>Video Library</option>
-      </select>
-
-      <select
-        name="renewal_type"
-        value={formData.renewal_type || ""}
-        onChange={handleChange}
-      >
-        <option value="">
-          Renewal Type
-        </option>
-
-        <option>Monthly</option>
-        <option>Quarterly</option>
-        <option>Yearly</option>
-      </select>
-
-      <input
-        type="number"
-        placeholder="Trial Days"
-        name="trial_days"
-        min="0"
-        value={formData.trial_days || 0}
-        onChange={handleChange}
-      />
-
-      <input
-        required
-        type="number"
-        placeholder="Monthly Cost (₹)"
-        name="monthly_cost"
-        value={formData.monthly_cost}
-        onChange={handleChange}
-      />
+      <div>
+        <label>Subscriber Name</label>
+        <input
+          required
+          placeholder="Subscriber Name"
+          name="subscriber_name"
+          value={formData.subscriber_name}
+          onChange={handleChange}
+        />
+      </div>
 
       <div>
-        <label>
-          Start Date
-        </label>
+        <label>Email Address</label>
+        <input
+          required
+          type="email"
+          placeholder="Email Address"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </div>
 
+      <div>
+        <label>Phone Number</label>
+        <input
+          required
+          pattern="[0-9]{10}"
+          placeholder="Phone Number"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Plan</label>
+        <select
+          required
+          name="plan"
+          value={formData.plan}
+          onChange={handleChange}
+        >
+          <option value="">Select Plan</option>
+          <option>Trial</option>
+          <option>Basic</option>
+          <option>Premium</option>
+          <option>Enterprise</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Access Level</label>
+        <select
+          required
+          name="access_level"
+          value={formData.access_level}
+          onChange={handleChange}
+        >
+          <option value="">Select Access Level</option>
+          <option>Basic</option>
+          <option>Premium</option>
+          <option>Enterprise</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Access Type</label>
+        <select
+          required
+          name="access_type"
+          value={formData.access_type}
+          onChange={handleChange}
+        >
+          <option value="">Select Access Type</option>
+          <option>Website</option>
+          <option>Mobile App</option>
+          <option>Premium Articles</option>
+          <option>Research Content</option>
+          <option>Video Library</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Renewal Type</label>
+        <select
+          name="renewal_type"
+          value={formData.renewal_type || ""}
+          onChange={handleChange}
+        >
+          <option value="">Select Renewal Type</option>
+          <option>Monthly</option>
+          <option>Quarterly</option>
+          <option>Yearly</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Trial Days</label>
+        <input
+          type="number"
+          placeholder="Trial Days"
+          name="trial_days"
+          min="0"
+          value={formData.trial_days || 0}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Start Date</label>
         <input
           required
           type="date"
@@ -138,10 +135,7 @@ function SubscriptionForm({
       </div>
 
       <div>
-        <label>
-          End Date
-        </label>
-
+        <label>End Date</label>
         <input
           required
           type="date"
@@ -151,26 +145,35 @@ function SubscriptionForm({
         />
       </div>
 
-      <select
-        required
-        name="payment_status"
-        value={formData.payment_status}
-        onChange={handleChange}
-      >
-        <option value="">
-          Payment Status
-        </option>
-
-        <option>Paid</option>
-        <option>Pending</option>
-        <option>Overdue</option>
-      </select>
+      <div>
+        <label>Monthly Cost (₹)</label>
+        <input
+          required
+          type="number"
+          placeholder="Monthly Cost (₹)"
+          name="monthly_cost"
+          value={formData.monthly_cost}
+          onChange={handleChange}
+        />
+      </div>
 
       <div>
-        <label>
-          Last Payment Date
-        </label>
+        <label>Payment Status</label>
+        <select
+          required
+          name="payment_status"
+          value={formData.payment_status}
+          onChange={handleChange}
+        >
+          <option value="">Payment Status</option>
+          <option>Paid</option>
+          <option>Pending</option>
+          <option>Overdue</option>
+        </select>
+      </div>
 
+      <div>
+        <label>Last Payment Date</label>
         <input
           type="date"
           name="last_payment_date"
@@ -180,10 +183,7 @@ function SubscriptionForm({
       </div>
 
       <div>
-        <label>
-          Next Billing Date
-        </label>
-
+        <label>Next Billing Date</label>
         <input
           required
           type="date"
@@ -193,16 +193,21 @@ function SubscriptionForm({
         />
       </div>
 
-      <select
-        required
-        name="status"
-        value={formData.status}
-        onChange={handleChange}
-      >
-        <option>Active</option>
-        <option>Expired</option>
-        <option>Trial</option>
-      </select>
+      <div>
+        <label>Subscription Status</label>
+        <select
+          required
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+        >
+          <option>Active</option>
+          <option>Expired</option>
+          <option>Trial</option>
+        </select>
+      </div>
+
+      <div></div>
 
       <button
         type="submit"
@@ -210,11 +215,8 @@ function SubscriptionForm({
       >
         💾 Save Subscription
       </button>
-
     </form>
-
   );
-
 }
 
 export default SubscriptionForm;
