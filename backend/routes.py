@@ -57,16 +57,16 @@ def register_routes(app):
 
             db.session.add(subscription)
 
-           # payment = Payment(
-                #subscriber_name=subscription.subscriber_name,
-               # plan=subscription.plan,
-                #amount=subscription.monthly_cost,
-                #status=subscription.payment_status,
-                #payment_date=subscription.last_payment_date,
-                #next_billing=subscription.next_billing_date
-            #)
+            payment = Payment(
+                subscriber_name=subscription.subscriber_name,
+                plan=subscription.plan,
+                amount=subscription.monthly_cost,
+                status=subscription.payment_status,
+                payment_date=subscription.last_payment_date,
+                next_billing=subscription.next_billing_date
+            )
 
-            #db.session.add(payment)
+            db.session.add(payment)
 
             log = AuditLog(
                 action="Created",
