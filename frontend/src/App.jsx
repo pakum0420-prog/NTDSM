@@ -158,7 +158,18 @@ function Layout() {
                 <Reports />
               </AdminRoute>
             }
+
+            
           />
+          
+          <Route
+  path="/audit-logs"
+  element={
+    <AdminRoute>
+      <AuditLogs />
+    </AdminRoute>
+  }
+/>
 
          
 
