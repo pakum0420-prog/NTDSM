@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
-
+import "./AdminLogin.css";
 function AdminLogin() {
 
   const navigate = useNavigate();
@@ -55,109 +55,97 @@ function AdminLogin() {
 
   };
 
-  return (
+return (
+  <div className="login-page">
 
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background:
-          "linear-gradient(135deg,#0d6efd,#052c65)"
-      }}
-    >
+    <div className="login-left">
 
-      <form
-        onSubmit={handleLogin}
-        style={{
-          width: "420px",
-          background: "white",
-          padding: "40px",
-          borderRadius: "20px"
-        }}
-      >
+      <h1>Digital Subscription Manager</h1>
 
-        <img
-          src="/lo.webp"
-          alt="Logo"
-          style={{
-            width: "220px",
-            display: "block",
-            margin: "0 auto 20px"
-          }}
-        />
+      <h3>Secure Admin Portal</h3>
 
-        <h2
-          style={{
-            textAlign: "center"
-          }}
-        >
-          Admin Login
-        </h2>
+      <p>
+        Manage subscriptions, payments,
+        reports and analytics from one
+        powerful dashboard.
+      </p>
+
+      <div className="feature">
+        ✔ Secure Authentication
+      </div>
+
+      <div className="feature">
+        ✔ Subscription Management
+      </div>
+
+      <div className="feature">
+        ✔ Analytics & Reports
+      </div>
+
+    </div>
+
+    <div className="login-card">
+
+      <img
+        src="/lo.webp"
+        alt="Logo"
+        className="login-logo"
+      />
+
+      <h2>Admin Login</h2>
+
+      <p className="login-subtitle">
+        Enter your credentials to continue
+      </p>
+
+      <form onSubmit={handleLogin}>
 
         <input
           type="text"
-          placeholder="Admin Username"
+          placeholder="Username"
           className="form-control mb-3"
           value={username}
-          onChange={(e) =>
-            setUsername(e.target.value)
-          }
+          onChange={(e)=>setUsername(e.target.value)}
         />
 
-        <div
-          style={{
-            position: "relative"
-          }}
-        >
+        <div className="password-box">
 
           <input
-            type={
-              showPassword
-                ? "text"
-                : "password"
-            }
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             className="form-control"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e)=>setPassword(e.target.value)}
           />
 
           <span
-            style={{
-              position: "absolute",
-              right: "15px",
-              top: "10px",
-              cursor: "pointer"
-            }}
+            className="password-icon"
             onClick={() =>
-              setShowPassword(
-                !showPassword
-              )
+              setShowPassword(!showPassword)
             }
           >
-            {showPassword
-              ? <FaEyeSlash />
-              : <FaEye />}
+            {showPassword ? <FaEyeSlash/> : <FaEye/>}
           </span>
 
         </div>
 
         <button
+          className="login-btn"
           type="submit"
-          className="btn btn-primary w-100 mt-3"
         >
-          Login
+          Login to Dashboard
         </button>
 
       </form>
 
+      <small className="version">
+        Version 1.0 • © 2026
+      </small>
+
     </div>
 
-  );
+  </div>
+);
 
 }
 

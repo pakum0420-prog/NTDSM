@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
+
 import "./Dashboard.css";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
@@ -481,11 +481,35 @@ const filteredSubscriptions =
 
   <div className="dashboard-container">
 
-    <Header />
+  
 
-    <h1 className="dashboard-title">
-      Digital Subscription Manager
+<div className="hero-banner">
+
+  <div>
+
+    <h1>
+      👋 Welcome Back, Admin
     </h1>
+
+    <p>
+      Monitor subscriptions, payments, revenue and customer activity from one place.
+    </p>
+
+  </div>
+
+  <div className="hero-date">
+
+    <h5>
+      {new Date().toLocaleDateString()}
+    </h5>
+
+    <small>
+      Last Updated
+    </small>
+
+  </div>
+
+</div>
 
     <DashboardCards stats={stats} />
 

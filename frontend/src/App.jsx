@@ -12,18 +12,17 @@ import Reports from "./pages/Reports";
 import Subscriptions from "./pages/Subscriptions";
 import Payments from "./pages/Payments";
 import SubscriptionDetails from "./pages/SubscriptionDetails";
-import UserDashboard from "./pages/UserDashboard";
-import MySubscription from "./pages/MySubscription";
-import PremiumContent from "./pages/PremiumContent";
+
+
 import AuditLogs from "./pages/AuditLogs";
 import AdminLogin from "./pages/AdminLogin";
-import UserLogin from "./pages/UserLogin";
+
 import PortalSelect from "./pages/PortalSelect";
 import Profile from "./pages/Profile";
 import AdminSidebar from "./components/AdminSidebar";
-import UserSidebar from "./components/UserSidebar";
+
 import PaymentHistory from "./pages/PaymentHistory";
-import UpgradePlan from "./pages/UpgradePlan";
+
 import Notifications from "./pages/Notifications";
 
 const AdminRoute = ({ children }) => {
@@ -90,24 +89,20 @@ function Layout() {
 
         <Routes>
 
-          {/* Portal */}
+          
+          {/* Login Pages */}
 
           <Route
-            path="/"
-            element={<PortalSelect />}
-          />
-
-          {/* Login Pages */}
+  path="/"
+  element={<Navigate to="/login-admin" replace />}
+/>
 
           <Route
             path="/login-admin"
             element={<AdminLogin />}
           />
 
-          <Route
-            path="/login-user"
-            element={<UserLogin />}
-          />
+          
 
           {/* Admin Pages */}
 
@@ -165,73 +160,7 @@ function Layout() {
             }
           />
 
-          {/* User Pages */}
-
-          <Route
-            path="/user-dashboard"
-            element={
-              <UserRoute>
-                <UserDashboard />
-              </UserRoute>
-            }
-          />
-           
-           <Route
-  path="/profile"
-  element={
-    <UserRoute>
-      <Profile />
-    </UserRoute>
-  }
-/>
-          <Route
-            path="/my-subscription"
-            element={
-              <UserRoute>
-                <MySubscription />
-              </UserRoute>
-            }
-          />
-
-          <Route
-            path="/premium-content"
-            element={
-              <UserRoute>
-                <PremiumContent />
-              </UserRoute>
-            }
-          />
-
-            <Route
-  path="/payment-history"
-  element={
-    <UserRoute>
-      <PaymentHistory />
-    </UserRoute>
-  }
-/>
-
-<Route
-  path="/upgrade-plan"
-  element={
-    <UserRoute>
-      <UpgradePlan />
-    </UserRoute>
-  }
-/>
-
-<Route
-  path="/notifications"
-  element={
-    <UserRoute>
-      <Notifications />
-    </UserRoute>
-  }
-/>
-         <Route
-  path="/audit-logs"
-  element={<AuditLogs />}
-/>
+         
 
         </Routes>
 

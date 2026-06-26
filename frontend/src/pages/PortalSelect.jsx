@@ -56,12 +56,7 @@ function PortalSelect() {
           Admin Login
         </Link>
 
-        <Link
-          to="/login-user"
-          className="btn btn-success w-100"
-        >
-          User Login
-        </Link>
+        
 
       </div>
 

@@ -4,11 +4,18 @@ import Footer from "../components/Footer";
 function Reports() {
 
   const [subscriptions, setSubscriptions] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] =
   useState("All");
-
+const [search, setSearch] = useState("");
 const [planFilter, setPlanFilter] =
   useState("All");
+ 
+const [currentPage, setCurrentPage] = useState(1);
+
+const recordsPerPage = 5;
+
+
 
 const [paymentFilter, setPaymentFilter] =
   useState("All");
@@ -26,6 +33,7 @@ const [paymentFilter, setPaymentFilter] =
     const data = await response.json();
 
     setSubscriptions(data);
+    setLoading(false);
 
   };
 
@@ -45,7 +53,7 @@ const [paymentFilter, setPaymentFilter] =
       "Status"
     ];
 
-    const rows = subscriptions.map((s) => [
+ const rows = filteredSubscriptions.map((s) => [
       s.id,
       s.subscriber_name,
       s.email,
@@ -90,28 +98,57 @@ const [paymentFilter, setPaymentFilter] =
 
   };
 
-   const filteredSubscriptions =
-  subscriptions.filter((item) => {
+  const filteredSubscriptions = subscriptions.filter((item) => {
 
-    const statusMatch =
-      statusFilter === "All" ||
-      item.status === statusFilter;
+  const searchMatch =
 
-    const planMatch =
-      planFilter === "All" ||
-      item.plan === planFilter;
+    item.subscriber_name
+      ?.toLowerCase()
+      .includes(search.toLowerCase()) ||
 
-    const paymentMatch =
-      paymentFilter === "All" ||
-      item.payment_status === paymentFilter;
+    item.email
+      ?.toLowerCase()
+      .includes(search.toLowerCase()) ||
 
-    return (
-      statusMatch &&
-      planMatch &&
-      paymentMatch
-    );
+    item.phone
+      ?.toLowerCase()
+      .includes(search.toLowerCase());
 
-  });
+  const statusMatch =
+    statusFilter === "All" ||
+    item.status === statusFilter;
+
+  const planMatch =
+    planFilter === "All" ||
+    item.plan === planFilter;
+
+  const paymentMatch =
+    paymentFilter === "All" ||
+    item.payment_status === paymentFilter;
+
+  return (
+    searchMatch &&
+    statusMatch &&
+    planMatch &&
+    paymentMatch
+  );
+
+});
+
+ 
+const indexOfLastRecord = currentPage * recordsPerPage;
+const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+
+const currentSubscriptions =
+  filteredSubscriptions.slice(
+    indexOfFirstRecord,
+    indexOfLastRecord
+  );
+
+const totalPages = Math.ceil(
+  filteredSubscriptions.length / recordsPerPage
+);
+
 
   const totalSubscribers =
     subscriptions.length;
@@ -174,6 +211,38 @@ const [paymentFilter, setPaymentFilter] =
 
   }).length;
 
+ if (loading) {
+  return (
+    <div
+      className="d-flex flex-column justify-content-center align-items-center"
+      style={{
+        height: "100vh"
+      }}
+    >
+      <div
+        className="spinner-border text-primary"
+        role="status"
+        style={{
+          width: "4rem",
+          height: "4rem"
+        }}
+      >
+        <span className="visually-hidden">
+          Loading...
+        </span>
+      </div>
+
+      <h4 className="mt-4">
+        Loading Reports...
+      </h4>
+
+      <p className="text-muted">
+        Please wait...
+      </p>
+    </div>
+  );
+}
+
   return (
 
     <div>
@@ -187,7 +256,7 @@ const [paymentFilter, setPaymentFilter] =
 
       <div className="row mb-4">
 
-        <div className="col-md-4">
+<div className="col-12 col-md-4 mb-3">
           <div className="card text-white bg-primary">
             <div className="card-body">
               <h5>Total Subscribers</h5>
@@ -198,7 +267,7 @@ const [paymentFilter, setPaymentFilter] =
           </div>
         </div>
 
-        <div className="col-md-4">
+       <div className="col-12 col-md-4 mb-3">
           <div className="card text-white bg-success">
             <div className="card-body">
               <h5>Active Subscribers</h5>
@@ -209,7 +278,7 @@ const [paymentFilter, setPaymentFilter] =
           </div>
         </div>
 
-        <div className="col-md-4">
+       <div className="col-12 col-md-4 mb-3">
           <div className="card text-white bg-danger">
             <div className="card-body">
               <h5>Expired Subscribers</h5>
@@ -226,7 +295,7 @@ const [paymentFilter, setPaymentFilter] =
 
       <div className="row mb-4">
 
-  <div className="col-md-3">
+ <div className="col-12 col-sm-6 col-lg-3 mb-3">
     <div className="card text-white bg-warning">
       <div className="card-body">
         <h5>Total Revenue</h5>
@@ -235,7 +304,7 @@ const [paymentFilter, setPaymentFilter] =
     </div>
   </div>
 
-  <div className="col-md-3">
+ <div className="col-12 col-sm-6 col-lg-3 mb-3">
     <div className="card text-white bg-dark">
       <div className="card-body">
         <h5>Pending Payments</h5>
@@ -244,7 +313,7 @@ const [paymentFilter, setPaymentFilter] =
     </div>
   </div>
 
-  <div className="col-md-3">
+ <div className="col-12 col-sm-6 col-lg-3 mb-3">
     <div className="card text-white bg-info">
       <div className="card-body">
         <h5>Paid Subscribers</h5>
@@ -253,7 +322,7 @@ const [paymentFilter, setPaymentFilter] =
     </div>
   </div>
 
-  <div className="col-md-3">
+ <div className="col-12 col-sm-6 col-lg-3 mb-3">
     <div className="card text-white bg-secondary">
       <div className="card-body">
         <h5>Upcoming Renewals</h5>
@@ -264,9 +333,23 @@ const [paymentFilter, setPaymentFilter] =
 
 </div>
      
-      <div
-  className="d-flex gap-2 mb-3"
->
+    <div className="row mb-3">
+
+  <div className="col-md-4">
+
+    <input
+      type="text"
+      className="form-control"
+      placeholder="Search Name, Email or Phone..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+
+  </div>
+
+  <div className="col-md-8 d-flex gap-2">
+    
+  </div>
 
   <select
     className="form-select"
@@ -355,12 +438,23 @@ const [paymentFilter, setPaymentFilter] =
 
 </div>
 
-      <button
-        className="btn btn-success mb-4"
-        onClick={exportCSV}
-      >
-        Export CSV Report
-      </button>
+      <div className="d-flex gap-2 mb-4">
+
+  <button
+    className="btn btn-success"
+    onClick={exportCSV}
+  >
+    Export CSV
+  </button>
+
+  <button
+    className="btn btn-primary"
+    onClick={() => window.print()}
+  >
+    Print Report
+  </button>
+
+</div>
 
       {/* Report Table */}
 
@@ -377,7 +471,7 @@ const [paymentFilter, setPaymentFilter] =
               overflowX: "auto"
             }}
           >
-
+              <div className="table-responsive">
             <table
               className="table table-bordered table-striped"
               style={{
@@ -403,12 +497,34 @@ const [paymentFilter, setPaymentFilter] =
 
               </thead>
 
-              <tbody>
+            <tbody>
 
-              {filteredSubscriptions.map((item, index) => (
+{currentSubscriptions.length === 0 ? (
 
-                    <tr key={item.id}>
+<tr>
 
+<td
+colSpan="11"
+className="text-center py-5"
+>
+
+<h5 className="text-muted">
+📭 No records found
+</h5>
+
+<p className="text-muted mb-0">
+Try changing your search or filters.
+</p>
+
+</td>
+
+</tr>
+
+) : (
+
+currentSubscriptions.map((item, index) => (
+
+<tr key={item.id}>
                       <td>{index + 1}</td>
 
                       <td>
@@ -466,12 +582,13 @@ const [paymentFilter, setPaymentFilter] =
 
                     </tr>
 
-                  )
-                )}
+                      )
+                ))}
 
               </tbody>
 
             </table>
+            </div>
 
           </div>
 
@@ -547,6 +664,42 @@ const [paymentFilter, setPaymentFilter] =
 
     )}
 
+<div className="d-flex justify-content-center mt-4">
+
+  <button
+    className="btn btn-secondary me-2"
+    disabled={currentPage === 1}
+    onClick={() => setCurrentPage(currentPage - 1)}
+  >
+    Previous
+  </button>
+
+  {[...Array(totalPages)].map((_, index) => (
+
+    <button
+      key={index}
+      className={
+        currentPage === index + 1
+          ? "btn btn-primary me-2"
+          : "btn btn-outline-primary me-2"
+      }
+      onClick={() => setCurrentPage(index + 1)}
+    >
+      {index + 1}
+    </button>
+
+  ))}
+
+  <button
+    className="btn btn-secondary"
+    disabled={currentPage === totalPages}
+    onClick={() => setCurrentPage(currentPage + 1)}
+  >
+    Next
+  </button>
+
+</div>
+    
   </div>
 
 </div>

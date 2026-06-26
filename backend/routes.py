@@ -45,7 +45,7 @@ def register_routes(app):
                 plan=data.get("plan"),
                 access_level=data.get("access_level"),
                 access_type=data.get("access_type"),
-                trial_days=data.get("trial_days"),
+                trial_days=int(data["trial_days"]) if data.get("trial_days") else None,
                 start_date=data.get("start_date"),
                 end_date=data.get("end_date"),
                 status=data.get("status", "Active"),
@@ -67,6 +67,8 @@ def register_routes(app):
             )
 
             db.session.add(payment)
+            print("PAYMENT OBJECT CREATED")
+            print(payment.subscriber_name)
 
             log = AuditLog(
                 action="Created",
@@ -80,6 +82,7 @@ def register_routes(app):
             return jsonify({"message": "Subscription Created Successfully"}), 201
         except Exception as e:
             db.session.rollback()
+            print("ERROR:", e)
             return jsonify({"error": str(e)}), 500
 
     # ==========================
@@ -208,6 +211,23 @@ def register_routes(app):
         except Exception as e:
             db.session.rollback()
             return jsonify({"error": str(e)}), 500
+        
+    @app.route("/api/payments/<int:id>", methods=["DELETE"])
+    def delete_payment(id):
+         payment = db.session.get(Payment, id)
+         if not payment:
+            return jsonify({"message": "Payment Not Found"}), 404
+         try:
+               db.session.delete(payment)
+               db.session.commit()
+               return jsonify({
+                    "message": "Payment Deleted Successfully"
+                    })
+         except Exception as e:
+              db.session.rollback()
+              return jsonify({
+                    "error": str(e)
+                }), 500
 
     @app.route("/api/audit-logs", methods=["GET"])
     def get_audit_logs():
@@ -218,3 +238,22 @@ def register_routes(app):
             "subscriber_name": log.subscriber_name,
             "created_at": str(log.created_at)
         } for log in logs])
+    
+    @app.route("/api/payments/<int:id>", methods=["PUT"]) 
+    def update_payment(id): 
+        payment = db.session.get(Payment, id)
+        if not payment:
+            return jsonify({"message": "Payment Not Found"}), 404
+        data = request.get_json(silent=True) or {}
+        payment.subscriber_name = data.get("subscriber_name")
+        payment.plan = data.get("plan") 
+        payment.amount = data.get("amount") 
+        payment.status = data.get("status")
+        payment.payment_date = data.get("payment_date") 
+        payment.next_billing = data.get("next_billing")
+        try:
+            db.session.commit()
+            return jsonify({"message": "Payment Updated Successfully"})
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({"error": str(e)}), 500

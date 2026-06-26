@@ -192,14 +192,19 @@ function SubscriptionTable({
                   </button>
 
                   <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() =>
-                      deleteSubscription(item.id)
-                    }
-                  >
-                    Delete
-                  </button>
+  className="btn btn-danger btn-sm"
+  onClick={() => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this subscription?"
+    );
 
+    if (confirmDelete) {
+      deleteSubscription(item.id);
+    }
+  }}
+>
+  Delete
+</button>
                 </td>
 
               </tr>
