@@ -74,17 +74,18 @@ function Layout() {
       )}
 
       <div
-        style={{
-          flex: 1,
-          padding: showSidebar
-            ? "20px"
-            : "0",
-         marginLeft:
-  window.innerWidth > 768 &&
-  showSidebar
-    ? "260px"
-    : "0"
-        }}
+  style={{
+    flex: 1,
+    padding: showSidebar ? "20px" : "0",
+    marginLeft:
+      window.innerWidth > 768 && showSidebar
+        ? "280px"
+        : "0",
+    width:
+      window.innerWidth > 768 && showSidebar
+        ? "calc(100% - 280px)"
+        : "100%"
+   }}
       >
 
         <Routes>
@@ -157,10 +158,7 @@ function Layout() {
               <AdminRoute>
                 <Reports />
               </AdminRoute>
-            }
-
-            
-          />
+            } />
           
           <Route
   path="/audit-logs"

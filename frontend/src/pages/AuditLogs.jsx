@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import Breadcrumb from "../components/Breadcrumb";
 
 function AuditLogs() {
 
@@ -99,6 +100,17 @@ const exportCSV = () => {
   return (
 
     <div className="container-fluid py-3">
+      <Breadcrumb
+  items={[
+    {
+      label: "Dashboard",
+      path: "/admin-dashboard"
+    },
+    {
+      label: "Audit Logs"
+    }
+  ]}
+/>
 
       <h1 className="mb-4">
         Audit Logs

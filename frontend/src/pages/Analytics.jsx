@@ -1,5 +1,6 @@
 // Analytics.jsx
 import { useEffect, useState } from "react";
+import Breadcrumb from "../components/Breadcrumb";
 import Footer from "../components/Footer";
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
@@ -57,6 +58,17 @@ function Analytics() {
 
   return (
     <div className="container-fluid py-3">
+      <Breadcrumb
+  items={[
+    {
+      label: "Dashboard",
+      path: "/admin-dashboard"
+    },
+    {
+      label: "Analytics"
+    }
+  ]}
+/>
       <h1 className="mb-4">Analytics Dashboard</h1>
 
       <div className="row g-3 mb-4">

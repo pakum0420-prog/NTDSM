@@ -4,7 +4,7 @@ import "./Dashboard.css";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import DashboardCards from "../components/DashboardCards";
-
+import Breadcrumb from "../components/Breadcrumb";
 
 import AlertsPanel from "../components/AlertsPanel";
 import AccessOverview
@@ -487,6 +487,14 @@ const filteredSubscriptions =
 
   <div>
 
+    <Breadcrumb
+  items={[
+    {
+      label: "Dashboard"
+    }
+  ]}
+/>
+
     <h1>
       👋 Welcome Back, Admin
     </h1>
@@ -578,66 +586,101 @@ const filteredSubscriptions =
    
 
      
-<div className="card mt-4">
-
-  <div className="card-header">
-
-    Recent Activity
-
-  </div>
-
+<div className="card shadow-sm border-0 mt-4">
   <div className="card-body">
 
-    {subscriptions
-      .slice(-5)
-      .reverse()
-      .map((item) => (
+    <h4 className="mb-4">
+      📋 Recent Activity
+    </h4>
 
+    <div
+      style={{
+        maxHeight: "350px",
+        overflowY: "auto"
+      }}
+    >
+      {subscriptions.length === 0 ? (
         <div
-          key={item.id}
-          className="activity-item"
+          className="text-center text-muted p-5"
         >
-
-          <div>
-
-            <strong>
-              {item.subscriber_name}
-            </strong>
-
-            <br />
-
-            <small>
-
-              {item.status === "Active"
-                ? `Activated ${item.plan} subscription`
-                : item.status === "Expired"
-                ? "Subscription expired"
-                : "Started free trial"}
-
-            </small>
-
-          </div>
-
-          <span
-            className={
-              item.status === "Active"
-                ? "badge bg-success"
-                : item.status === "Expired"
-                ? "badge bg-danger"
-                : "badge bg-warning text-dark"
-            }
-          >
-            {item.status}
-          </span>
-
+          No recent activities found.
         </div>
+      ) : (
+        subscriptions
+          .slice(-5)
+          .reverse()
+          .map((item) => (
 
-      ))}
+            <div
+              key={item.id}
+              style={{
+                background: "#f8f9fa",
+                borderRadius: "15px",
+                padding: "15px",
+                marginBottom: "15px",
+                borderLeft:
+                  `5px solid ${
+                    item.status === "Expired"
+                      ? "#dc3545"
+                      : item.status === "Trial"
+                      ? "#ffc107"
+                      : "#198754"
+                  }`
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent:
+                    "space-between",
+                  alignItems: "center"
+                }}
+              >
+                <strong>
+                  {item.subscriber_name}
+                </strong>
+
+                <span
+                  className={
+                    item.status === "Active"
+                      ? "badge bg-success"
+                      : item.status === "Expired"
+                      ? "badge bg-danger"
+                      : "badge bg-warning text-dark"
+                  }
+                >
+                  {item.status}
+                </span>
+              </div>
+
+              <div
+                style={{
+                  color: "#6c757d",
+                  marginTop: "5px"
+                }}
+              >
+                {item.status === "Active"
+                  ? `Activated ${item.plan} subscription`
+                  : item.status === "Expired"
+                  ? "Subscription expired"
+                  : "Started free trial"}
+              </div>
+
+              <small
+                style={{
+                  color: "#adb5bd"
+                }}
+              >
+                ID : {item.id}
+              </small>
+            </div>
+
+          ))
+      )}
+    </div>
 
   </div>
-
 </div>
-     
 
       
        <Footer />

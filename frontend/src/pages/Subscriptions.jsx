@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Breadcrumb from "../components/Breadcrumb";
 
 import SearchBar from "../components/SearchBar";
 import SubscriptionForm from "../components/SubscriptionForm";
@@ -470,6 +471,18 @@ const totalPages =
  return (
 
   <div>
+
+    <Breadcrumb
+  items={[
+    {
+      label: "Dashboard",
+      path: "/admin-dashboard"
+    },
+    {
+      label: "Subscriptions"
+    }
+  ]}
+/>
 
     <h1 className="mb-4">
       Subscription Management

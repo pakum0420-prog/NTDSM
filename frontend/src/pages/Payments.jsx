@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
-
+import Breadcrumb from "../components/Breadcrumb";
 function Payments() {
   const [payments, setPayments] = useState([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
+  
   
 const [editMode, setEditMode] = useState(false);
 const [editingId, setEditingId] = useState(null);
@@ -210,6 +211,19 @@ const totalPages = Math.ceil(
 
   return (
     <div>
+     
+     <Breadcrumb
+  items={[
+    {
+      label: "Dashboard",
+      path: "/admin-dashboard"
+    },
+    {
+      label: "Payments"
+    }
+  ]}
+/>
+
       <h1 className="mb-4">
         Payment & Billing Tracker
       </h1>

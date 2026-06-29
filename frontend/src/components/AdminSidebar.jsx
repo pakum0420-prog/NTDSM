@@ -8,7 +8,8 @@ import {
   FaCreditCard,
   FaMoneyBillWave,
   FaUser,
-  FaLock
+  FaLock,
+  FaHistory
 } from "react-icons/fa";
 
 import "./Sidebar.css";
@@ -21,15 +22,15 @@ function Sidebar() {
 
     <div className="sidebar">
 
-      <div className="sidebar-logo">
+      <Link to="/admin-dashboard" className="sidebar-logo">
+  <img
+    src="/lo.webp"
+    alt="Namasthe Telangana"
+    className="company-logo"
+  />
+</Link>
 
-        <img
-          src="/lo.webp"
-          alt="Namasthe Telangana"
-          className="company-logo"
-        />
-
-      </div>
+      
 
       <nav>
 
@@ -104,6 +105,20 @@ function Sidebar() {
           Reports
         </Link>
 
+         <Link
+  to="/audit-logs"
+  className={
+    location.pathname === "/audit-logs"
+      ? "active"
+      : ""
+  }
+>
+  <FaHistory />
+  Audit Logs
+</Link>
+
+
+
         <hr
           style={{
             margin: "15px 10px",
@@ -113,17 +128,7 @@ function Sidebar() {
 
         
 
-        <Link
-  to="/audit-logs"
-  className={
-    location.pathname ===
-    "/audit-logs"
-      ? "active"
-      : ""
-  }
->
-  Audit Logs
-</Link>
+       
        
         
 

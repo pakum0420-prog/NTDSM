@@ -37,6 +37,22 @@ function SubscriptionDetails() {
 
     <div className="container">
 
+      <Breadcrumb
+  items={[
+    {
+      label: "Dashboard",
+      path: "/admin-dashboard"
+    },
+    {
+      label: "Subscriptions",
+      path: "/subscriptions"
+    },
+    {
+      label: "Details"
+    }
+  ]}
+/>
+
       <div
         className="card shadow"
         style={{

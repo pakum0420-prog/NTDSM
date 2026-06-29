@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
-
+import Breadcrumb from "../components/Breadcrumb";
 function Reports() {
 
   const [subscriptions, setSubscriptions] = useState([]);
@@ -213,12 +213,25 @@ const totalPages = Math.ceil(
 
  if (loading) {
   return (
+
     <div
       className="d-flex flex-column justify-content-center align-items-center"
       style={{
         height: "100vh"
       }}
     >
+
+      <Breadcrumb
+  items={[
+    {
+      label: "Dashboard",
+      path: "/admin-dashboard"
+    },
+    {
+      label: "Reports"
+    }
+  ]}
+/>
       <div
         className="spinner-border text-primary"
         role="status"
@@ -243,10 +256,11 @@ const totalPages = Math.ceil(
   );
 }
 
+
+
+     
   return (
-
-    <div>
-
+  <div className="container-fluid px-4">
 
       <h1 className="mb-4">
         Reports Dashboard

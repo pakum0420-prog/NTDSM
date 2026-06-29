@@ -1,7 +1,10 @@
-
+import {
+  FaUser,
+  FaCrown,
+  FaBuilding
+} from "react-icons/fa";
 
 function AccessOverview({ subscriptions }) {
-
   const basic =
     subscriptions.filter(
       (s) => s.access_level === "Basic"
@@ -21,114 +24,96 @@ function AccessOverview({ subscriptions }) {
     basic + premium + enterprise;
 
   const basicPercent =
-    total ? (basic / total) * 100 : 0;
+    total ? ((basic / total) * 100).toFixed(1) : 0;
 
   const premiumPercent =
-    total ? (premium / total) * 100 : 0;
+    total ? ((premium / total) * 100).toFixed(1) : 0;
 
   const enterprisePercent =
-    total ? (enterprise / total) * 100 : 0;
+    total
+      ? ((enterprise / total) * 100).toFixed(1)
+      : 0;
 
   return (
+  <div className="card mb-4 shadow-sm border-0">
+    <div className="card-body">
 
-    <div className="card mb-4">
+      <h4 className="mb-4">
+        📊 Access Overview
+      </h4>
 
-      <div className="card-body">
+      <div className="mb-4">
 
-        <h4 className="mb-4">
-          Access Overview
-        </h4>
-
-        <div className="access-item">
-
-          <div className="access-header">
-
-            <span>
-              🔹 Basic Access
-            </span>
-
-            <strong>
-              {basic}
-            </strong>
-
-          </div>
-
-          <div className="progress">
-
-            <div
-              className="progress-bar bg-primary"
-              style={{
-                width:
-                  `${basicPercent}%`
-              }}
-            />
-
-          </div>
-
+        <div className="d-flex justify-content-between">
+          <span>
+            <FaUser className="me-2 text-primary" />
+            Basic Access
+          </span>
+          <strong>{basic}</strong>
         </div>
 
-        <div className="access-item">
-
-          <div className="access-header">
-
-            <span>
-              ⭐ Premium Access
-            </span>
-
-            <strong>
-              {premium}
-            </strong>
-
+        <div className="progress mt-2">
+          <div
+            className="progress-bar bg-primary"
+            style={{
+              width: `${basicPercent}%`
+            }}
+          >
+            {basicPercent}%
           </div>
-
-          <div className="progress">
-
-            <div
-              className="progress-bar bg-warning"
-              style={{
-                width:
-                  `${premiumPercent}%`
-              }}
-            />
-
-          </div>
-
         </div>
 
-        <div className="access-item">
+      </div>
 
-          <div className="access-header">
+      <div className="mb-4">
 
-            <span>
-              🏢 Enterprise Access
-            </span>
+        <div className="d-flex justify-content-between">
+          <span>
+            <FaCrown className="me-2 text-warning" />
+            Premium Access
+          </span>
+          <strong>{premium}</strong>
+        </div>
 
-            <strong>
-              {enterprise}
-            </strong>
-
+        <div className="progress mt-2">
+          <div
+            className="progress-bar bg-warning"
+            style={{
+              width: `${premiumPercent}%`
+            }}
+          >
+            {premiumPercent}%
           </div>
+        </div>
 
-          <div className="progress">
+      </div>
 
-            <div
-              className="progress-bar bg-success"
-              style={{
-                width:
-                  `${enterprisePercent}%`
-              }}
-            />
+      <div>
 
+        <div className="d-flex justify-content-between">
+          <span>
+            <FaBuilding className="me-2 text-success" />
+            Enterprise Access
+          </span>
+          <strong>{enterprise}</strong>
+        </div>
+
+        <div className="progress mt-2">
+          <div
+            className="progress-bar bg-success"
+            style={{
+              width: `${enterprisePercent}%`
+            }}
+          >
+            {enterprisePercent}%
           </div>
-
         </div>
 
       </div>
 
     </div>
-
-  );
-
+  </div>
+);
 }
 
 export default AccessOverview;
